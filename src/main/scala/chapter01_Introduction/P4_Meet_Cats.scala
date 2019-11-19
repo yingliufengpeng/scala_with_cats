@@ -36,9 +36,5 @@ object P4_Meet_Cats {
     implicit val dateShow: Show[Date] = Show.show[Date](date => s"${date.getTime}ms since the epoch")
 
 
-
-
-
-
   }
 }
