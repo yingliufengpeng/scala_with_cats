@@ -31,7 +31,7 @@ object P8_The_Reader_Monad {
 
     def checkPassword(
                        username: String,
-                       password: String): DbReader[Boolean] = Reader{
+                       password: String): DbReader[Boolean] = Reader {
       db =>
         val r = for {
           (_, uname) <- db.userNames if uname == username
@@ -45,10 +45,15 @@ object P8_The_Reader_Monad {
                     password: String): DbReader[Boolean] = Reader {
       db =>
         val r = for {
-          uname<- db.userNames.get(userId)
-          _ <- db.password.get(uname)
-        } yield true
-        r.nonEmpty
+          some_uname <- findUsername(userId)
+          v <- checkPassword(some_uname.getOrElse(""), password)
+        } yield v
+
+//        val r = for {
+//          uname <- db.userNames.get(userId)
+//          _ <- db.password.get(uname)
+//        } yield true
+        r.run(db)
     }
 
     val users = Map(
@@ -56,6 +61,7 @@ object P8_The_Reader_Monad {
       2 -> "kate",
       3 -> "margo"
     )
+
     val passwords = Map(
       "dade" -> "zerocool",
       "kate" -> "acidburn",
@@ -68,9 +74,6 @@ object P8_The_Reader_Monad {
     val r5 = checkLogin(4, "davinci").run(db)
     println(s"r5 is $r5")
     // res11: cats.Id[Boolean] = false
-
-
-
 
 
   }
