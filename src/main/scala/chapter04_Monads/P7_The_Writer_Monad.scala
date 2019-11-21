@@ -55,7 +55,7 @@ object P7_The_Writer_Monad {
     val writer6 = writer1.swap
     println(s"writer6 is $writer6")
 
-    def slowly[A](body: => A) =
+    def slowly[A](body: => A): A =
       try body finally Thread.sleep(100)
     def factorial(n: Int): Int = {
       val ans = slowly(if(n == 0) 1 else n * factorial(n - 1))
