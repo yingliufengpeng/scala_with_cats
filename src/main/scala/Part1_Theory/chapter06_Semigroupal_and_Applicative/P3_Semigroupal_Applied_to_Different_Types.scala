@@ -54,7 +54,7 @@ object P3_Semigroupal_Applied_to_Different_Types {
     import cats.instances.vector._ // for
     type ErrorOr[A] = Either[Vector[String], A]
 
-    val r4 = Semigroupal[ErrorOr].product(
+    val r4 = Semigroupal[Either[Vector[String], ?]].product(
       Left(Vector("Error 2")),
       Left(Vector("Error 1")),
     )
