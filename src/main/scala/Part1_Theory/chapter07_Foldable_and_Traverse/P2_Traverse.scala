@@ -64,7 +64,7 @@ object P2_Traverse {
     println(s"r5 is $r5")
 
     import cats.instances.option._ // for Applicative
-    def process(inputs: List[Int]) =
+    def process(inputs: List[Int]): Option[List[Int]] =
       listTraverse(inputs)(n => if (n % 2  == 0 ) Some(n) else None)
 
     val r6 = process(List(2, 4, 6))
