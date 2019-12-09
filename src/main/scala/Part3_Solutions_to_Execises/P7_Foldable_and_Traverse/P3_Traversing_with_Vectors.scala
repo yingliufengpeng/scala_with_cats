@@ -42,8 +42,19 @@ object P3_Traversing_with_Vectors {
           Validated.invalid(List(s"$n is not even"))
       }
 
+    import cats.syntax.option._
+
+    def process3(inputs: List[Int]): ErrorOr[List[Int]] =
+      listTraverse(inputs) (e => Option(e).filter(_ % 2 == 0).toValid(List(s"$e is not even")))
+
     val r4 = process2(List(2, 4, 6))
     println(s"r4 is $r4")
+
+    val r5 = process3(List(2, 4, 6))
+    println(s"r5 is $r5")
+
+    val r6 = process3(List(1, 4, 7))
+    println(s"r5 is $r6")
 
   }
 
