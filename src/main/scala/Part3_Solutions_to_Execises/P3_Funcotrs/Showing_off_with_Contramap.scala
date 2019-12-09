@@ -1,4 +1,4 @@
-package Part3_Solutions_to_Execises.Funcotrs
+package Part3_Solutions_to_Execises.P3_Funcotrs
 
 object Showing_off_with_Contramap {
 

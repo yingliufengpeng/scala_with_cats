@@ -1,4 +1,4 @@
-package Part3_Solutions_to_Execises.Monads
+package Part3_Solutions_to_Execises.P4_Monads
 
 import jdk.nashorn.internal.ir.BreakableNode
 

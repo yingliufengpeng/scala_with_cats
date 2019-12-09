@@ -1,4 +1,4 @@
-package Part3_Solutions_to_Execises.Monads
+package Part3_Solutions_to_Execises.P4_Monads
 
 object P5_Show_Your_Working {
 

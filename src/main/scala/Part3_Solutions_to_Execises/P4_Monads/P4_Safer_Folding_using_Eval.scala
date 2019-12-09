@@ -1,4 +1,4 @@
-package Part3_Solutions_to_Execises.Monads
+package Part3_Solutions_to_Execises.P4_Monads
 
 object P4_Safer_Folding_using_Eval {
 

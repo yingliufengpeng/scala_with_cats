@@ -1,4 +1,4 @@
-package Part3_Solutions_to_Execises.Monads
+package Part3_Solutions_to_Execises.P4_Monads
 
 object P1_Getting_Func_y {
 

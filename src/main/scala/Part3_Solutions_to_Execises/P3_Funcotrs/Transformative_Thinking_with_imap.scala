@@ -1,4 +1,4 @@
-package Part3_Solutions_to_Execises.Funcotrs
+package Part3_Solutions_to_Execises.P3_Funcotrs
 
 object Transformative_Thinking_with_imap {
 
@@ -20,6 +20,7 @@ object Transformative_Thinking_with_imap {
     }
 
     final case class Box[A](value: A)
+
     object Codec {
 
       def apply[A](implicit c: Codec[A]): Codec[A] = c
@@ -39,7 +40,7 @@ object Transformative_Thinking_with_imap {
 //      implicit val boxIntCodec: Codec[Box[Int]] =
 //        stringCodec.imap(e => Box(e.toInt), _.value.toString)
 
-      // 这个从之前的逻辑在网上的走法的确很有特别的用处!!!
+      // 二次隐式搜索!!!
       implicit def boxCodec[A](implicit c: Codec[A]): Codec[Box[A]] = c.imap(Box(_), _.value)
     }
 
