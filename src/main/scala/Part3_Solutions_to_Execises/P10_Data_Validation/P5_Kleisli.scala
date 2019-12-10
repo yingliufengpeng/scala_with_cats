@@ -15,7 +15,7 @@ object P5_Kleisli {
   type Errors = NonEmptyList[String]
 
   type Result[A] = Either[Errors, A]
-  type Check[A, B] = Kleisli[Either[Errors, ?], A, B]
+  type Check[A, B] = Kleisli[Result, A, B]
   // Create a check from a function:
   def check[A, B](func: A => Result[B]): Check[A, B] =
     Kleisli(func)
