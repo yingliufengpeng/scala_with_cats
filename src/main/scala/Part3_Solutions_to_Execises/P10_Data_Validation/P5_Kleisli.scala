@@ -16,9 +16,11 @@ object P5_Kleisli {
 
   type Result[A] = Either[Errors, A]
   type Check[A, B] = Kleisli[Result, A, B]
+
   // Create a check from a function:
   def check[A, B](func: A => Result[B]): Check[A, B] =
     Kleisli(func)
+
   // Create a check from a Predicate:
   def checkPred[A](pred: Predicate[Errors, A]): Check[A, A] =
     Kleisli[Result, A, A](pred.run)
@@ -30,14 +32,17 @@ object P5_Kleisli {
     Predicate.lift(
       error(s"Must be longer than $n characters"),
       str => str.length > n)
+
   val alphanumeric: Predicate[Errors, String] =
     Predicate.lift(
       error(s"Must be all alphanumeric characters"),
       str => str.forall(_.isLetterOrDigit))
+
   def contains(char: Char): Predicate[Errors, String] =
     Predicate.lift(
       error(s"Must contain the character $char"),
       str => str.contains(char))
+
   def containsOnce(char: Char): Predicate[Errors, String] =
     Predicate.lift(
       error(s"Must contain the character $char only once"),
@@ -65,6 +70,7 @@ object P5_Kleisli {
     splitEmail andThen joinEmail
 
   final case class User(username: String, email: String)
+
   def createUser(
                   username: String,
                   email: String): Either[Errors, User] = (
@@ -87,7 +93,7 @@ object P5_Kleisli {
     import Predicate._
 
     def run(implicit s: Semigroup[E]): A => Either[E, A] =
-      (a: A) => this(a).toEither
+      (a: A) => this (a).toEither
 
     def and(that: Predicate[E, A]): Predicate[E, A] =
       And(this, that)
