@@ -1,4 +1,4 @@
-package Part3_Solutions_to_Execises.P2_Solutions_for_Monoids_and_Semigroups
+package Part3_Solutions_to_Execises.P2_Monoids_and_Semigroups
 
 import cats.Order
 

@@ -5,13 +5,13 @@ object P3_Traversing_with_Vectors {
   def main(args: Array[String]): Unit = {
 
     import cats.Applicative
-    import cats.syntax.apply._  // for map
-    import cats.syntax.applicative._  // for map
+    import cats.syntax.apply._ // for map
+    import cats.syntax.applicative._ // for map
 
-    def listTraverse[F[_]: Applicative, A, B](list: List[A])(func: A => F[B]): F[List[B]] =
+    def listTraverse[F[_] : Applicative, A, B](list: List[A])(func: A => F[B]): F[List[B]] =
       list.foldLeft(List.empty[B].pure[F])((accum, item) => (accum, func(item)).mapN(_ :+ _))
 
-    def listSequence[F[_]: Applicative, B](list: List[F[B]]): F[List[B]] =
+    def listSequence[F[_] : Applicative, B](list: List[F[B]]): F[List[B]] =
       listTraverse(list)(identity)
 
     import cats.instances.vector._
@@ -45,7 +45,7 @@ object P3_Traversing_with_Vectors {
     import cats.syntax.option._
 
     def process3(inputs: List[Int]): ErrorOr[List[Int]] =
-      listTraverse(inputs) (e => Option(e).filter(_ % 2 == 0).toValid(List(s"$e is not even")))
+      listTraverse(inputs)(e => Option(e).filter(_ % 2 == 0).toValid(List(s"$e is not even")))
 
     val r4 = process2(List(2, 4, 6))
     println(s"r4 is $r4")
