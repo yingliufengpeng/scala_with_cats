@@ -1,4 +1,4 @@
-package Part2_Case_Studies.chapter01_Case_Study_Map_Reduce
+package Part2_Case_Studies.chapter01_Case_Study_Testing_Asynchronous_Code
 
 object Main {
 
@@ -12,9 +12,10 @@ object Main {
     }
 
     // for server
-    import cats.instances.future._ // for Applicative
-    import cats.instances.list._   // for Traverse
-    import cats.syntax.traverse._   // for traverse
+    import cats.instances.future._
+    import cats.instances.list._
+    import cats.syntax.traverse._
+
     import scala.concurrent.ExecutionContext.Implicits.global
 
     class UptimeService(client: UptimeClient) {
