@@ -1,8 +1,7 @@
 package Part3_Solutions_to_Execises.P10_Data_Validation
 
-import javax.swing.event.DocumentEvent.ElementChange
-
 object P2_Basic_Combinators {
+
   import cats.Semigroup
   import cats.syntax.either._
   import cats.syntax.semigroup._ // for |+|
@@ -28,21 +27,19 @@ object P2_Basic_Combinators {
 
   final case class And[E, A](left: Check[E, A], right: Check[E, A]) extends Check[E, A]
 
-  final case class Pure[E, A] (func: A => Either[E, A]) extends Check[E, A]
+  final case class Pure[E, A](func: A => Either[E, A]) extends Check[E, A]
 
   def main(args: Array[String]): Unit = {
 
 
-
-
     val a: Check[List[String], Int] =
       Pure { v =>
-        if(v > 2) v.asRight
+        if (v > 2) v.asRight
         else List("Must be > 2").asLeft
       }
     val b: Check[List[String], Int] =
       Pure { v =>
-        if(v < -2) v.asRight
+        if (v < -2) v.asRight
         else List("Must be < -2").asLeft
       }
     val check: Check[List[String], Int] =
